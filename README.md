@@ -24,9 +24,57 @@ To Implement ELGAMAL ALGORITHM
 6. Security: The security of the ElGamal algorithm relies on the difficulty of solving the discrete logarithm problem in a large prime field, making it secure for encryption.
 
 ## Program:
+```
+# EX-NO-12 - ELGAMAL ALGORITHM
+# AIM: To implement ElGamal Algorithm
 
+# Function to find modular inverse
+def mod_inverse(a, p):
+    for i in range(1, p):
+        if (a * i) % p == 1:
+            return i
+    return None
+
+# Public values
+p = int(input("Enter a prime number (p): "))
+g = int(input("Enter primitive root (g): "))
+
+# Receiver private key
+x = int(input("Enter private key (x): "))
+
+# Public key
+y = pow(g, x, p)
+
+print("\nPublic Key (p, g, y):", (p, g, y))
+print("Private Key x:", x)
+
+# Message
+m = int(input("\nEnter message to encrypt: "))
+
+# Random integer k
+k = int(input("Enter random integer (k): "))
+
+# Encryption
+c1 = pow(g, k, p)
+c2 = (m * pow(y, k, p)) % p
+
+print("\nEncrypted message:")
+print("Ciphertext (c1, c2):", (c1, c2))
+
+# Decryption
+s = pow(c1, x, p)
+s_inv = mod_inverse(s, p)
+
+decrypted = (c2 * s_inv) % p
+
+print("\nDecrypted message:", decrypted)
+
+```
 
 ## Output:
+
+<img width="351" height="327" alt="image" src="https://github.com/user-attachments/assets/4c23e7c3-09f5-47f5-a2b9-0404f43082eb" />
+
 
 
 ## Result:
